@@ -1,0 +1,192 @@
+.view {
+    display: block;
+    padding-bottom: 6rem;
+}
+
+.scoreboard {
+    margin: 1.125rem 1rem 1.125rem 1rem;
+    background: linear-gradient(100deg, var(--surface-2) 0%, var(--surface) 100%);
+    border: 1px solid var(--line);
+    border-radius: 1.125rem;
+    padding: 1.125rem 1.25rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.sb-title {
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 800;
+    font-size: 0.875rem;
+    letter-spacing: 0.15625rem;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-top: 0.675rem;
+}
+
+.sb-count {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+}
+
+.sb-num {
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 700;
+    font-size: 2.675rem;
+    color: var(--gold);
+    letter-spacing: -0.0625rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.sb-total {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 1.125rem;
+    color: var(--text-faint);
+    font-weight: 500;
+}
+
+.sb-bar-track {
+    margin-top: 0.875rem;
+    height: 0.5rem;
+    background: var(--bg);
+    border-radius: 0.25rem;
+    transition: width 0.4s ease;
+}
+
+.sb-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--green), var(--gold));
+    border-radius: 0.25rem;
+    transition: width 0.4s ease;
+}
+
+.sb-legend {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.875rem;
+    font-size: 0.7375rem;
+    color: var(--text-dim);
+    font-weight: 600;
+}
+
+.sb-legend span {
+    display: flex;
+    align-items: center;
+    gap: 0.3125rem;
+}
+
+.search-wrap {
+    margin: 0 1rem 1rem 1rem;
+}
+
+.search {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 0.75rem;
+    padding: 0.75rem 0.875rem;
+    color: var(--text);
+    font-family: "Inter", sans-serif;
+    font-size: 0.875rem;
+}
+
+.search::placeholder {
+    color: var(--text-faint);
+}
+
+.section-label {
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 700;
+    font-size: 0.8125rem;
+    letter-spacing: 0.125rem;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    padding: 0.25rem 1rem 0.625rem 1rem;
+}
+
+.group-list {
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.group-row {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 0.875rem;
+    padding: 0.875rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    text-decoration: none;
+}
+
+.group-row:active {
+    transform: scale(0.98);
+    background: var(--surface-2);
+}
+
+.group-left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.group-badge {
+    width: 2.375rem;
+    height: 2.375rem;
+    border-radius: 0.675rem;
+    background: var(--surface-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--gold);
+    border: 1px solid var(--line);
+}
+
+.group-badge.special {
+    color: var(--green);
+}
+
+.group-name {
+    font-weight: 600;
+    font-size: 0.9375rem;
+    color: var(--text);
+}
+
+.group-sub {
+    font-size: 0.75rem;
+    color: var(--text-faint);
+    margin-top: 0.125rem;
+}
+
+.group-right {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+}
+
+.mini-progress {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    font-weight: 600;
+}
+
+.chevron {
+    color: var(--text-faint);
+    font-size: 1.125rem;
+}
+
+.search-erro {
+    color: var(--orange, #e2739d);
+    font-size: 0.75rem;
+    margin-top: 0.375rem;
+    padding: 0 0.25rem;
+}

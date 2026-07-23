@@ -1,0 +1,105 @@
+.view {
+    display: block;
+}
+
+.back-row {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.875rem 1rem 0.25rem 1rem;
+    color: var(--text);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.back-row FontAwesomeIcon {
+    flex-shrink: 0;
+}
+
+.back-title {
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 800;
+    font-size: 1.375rem;
+    letter-spacing: 0.03125rem;
+}
+
+.group-list {
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.group-row {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 0.875rem;
+    padding: 0.875rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    text-decoration: none;
+}
+
+.group-row:active {
+    transform: scale(0.98);
+    background: var(--surface-2);
+}
+
+.group-left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.group-badge {
+    width: 2.375rem;
+    height: 2.375rem;
+    border-radius: 0.675rem;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--gold);
+    border: 1px solid var(--line);
+}
+
+.group-badge.special {
+    color: var(--green);
+}
+
+.group-name {
+    font-weight: 600;
+    font-size: 0.9375rem;
+    color: var(--text);
+}
+
+.group-sub {
+    font-size: 0.75rem;
+    color: var(--text-faint);
+    margin-top: 0.125rem;
+}
+
+.group-right {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+}
+
+.mini-progress {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    font-weight: 600;
+}
+
+.chevron {
+    color: var(--text-faint);
+    font-size: 1.125rem;
+}

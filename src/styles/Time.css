@@ -1,0 +1,147 @@
+.view {
+    display: block;
+    padding-bottom: 6rem;
+}
+
+.back-row {
+    display: flex;
+    align-items: center;
+    gap: 0.675rem;
+    padding: 0.875rem 1rem 0.25rem 1rem;
+    color: var(--text);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.back-row svg {
+    flex-shrink: 0;
+}
+
+.back-title {
+    font-family: "Barlow Condensed", sans-serif;
+    font-weight: 800;
+    font-size: 1.375rem;
+    letter-spacing: 0.03125rem;
+}
+
+.grid-wrap {
+    padding: 0.875rem 1rem 0 1rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.675rem;
+}
+
+.sticker {
+    aspect-ratio: 3/4;
+    border-radius: 0.675rem;
+    border: 1.5px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.1s, border-color 0.15s, background 0.15s;
+    user-select: none;
+}
+
+.sticker-bg {
+    position: absolute;
+    inset: 0;
+    border-radius: 0.675rem;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.sticker.pressing {
+    transform: scale(0.94);
+}
+
+.sticker::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(5, 6, 8, 0.82);
+    z-index: 1;
+    border-radius: 0.675rem;
+}
+
+.sticker-num {
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    color: var(--text-dim);
+}
+
+.sticker-icon {
+    font-size: 0.9375rem;
+    margin-top: 0.1875rem;
+    line-height: 1;
+}
+
+.sticker.falta {
+    background: var(--surface);
+    border-color: var(--line);
+}
+
+.sticker.falta .sticker-num {
+    color: var(--text-faint);
+}
+
+.sticker.tenho::before {
+    background: rgba(23, 79, 45, 0.675);
+}
+
+.sticker.tenho .sticker-num {
+    color: var(--text);
+}
+
+.sticker.repetida::before {
+    background: rgba(116, 92, 37, 0.675);
+}
+
+.sticker.repetida .sticker-num {
+    color: var(--text);
+}
+
+.rep-badge {
+    position: absolute;
+    top: -0.325rem;
+    right: -0.325rem;
+    z-index: 2;
+    background: var(--gold);
+    color: #1a1305;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.675rem;
+    font-weight: 700;
+    border-radius: 0.5rem;
+    padding: 0.0625rem 0.3125rem;
+    min-width: 1rem;
+    text-align: center;
+}
+
+.hint-row {
+    display: flex;
+    justify-content: center;
+    gap: 1.125rem;
+    padding: 1.125rem 1rem 0.5rem 1rem;
+    font-size: 0.6875rem;
+    color: var(--text-faint);
+}
+
+.hint-row span {
+    display: flex;
+    align-items: center;
+    gap: 0.3125rem;
+}
+
+.sticker-num,
+.sticker-icon {
+    position: relative;
+    z-index: 2;
+}

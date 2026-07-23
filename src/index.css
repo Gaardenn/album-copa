@@ -1,0 +1,32 @@
+:root {
+  --bg: #0a0d11;
+  --surface: #141a21;
+  --surface-2: #1c2430;
+  --line: #262f2b;
+  --gold: #e8b84b;
+  --green: #2e9e5b;
+  --orange: #e2793d;
+  --text: #f2f0ea;
+  --text-dim: #8b93a1;
+  --text-faint: #545e6e;
+}
+
+#root {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  font-family: "Inter", sans-serif;
+  min-height: 100vh;
+}
