@@ -86,12 +86,12 @@ export function Time({ tab, setTab }) {
                             <div
                                 key={fig.id}
                                 className={`sticker ${fig.status} ${pressionado === fig.id ? "pressing" : ""}`}
-                                onMouseDown={(e) => iniciarPress(fig, e)}
-                                onMouseUp={(e) => finalizarPress(fig, e)}
-                                onMouseLeave={cancelarPress}
-                                onTouchStart={(e) => iniciarPress(fig, e)}
-                                onTouchEnd={(e) => finalizarPress(fig, e)}
+                                onPointerDown={(e) => iniciarPress(fig, e)}
+                                onPointerUp={(e) => finalizarPress(fig, e)}
+                                onPointerLeave={cancelarPress}
+                                onPointerCancel={cancelarPress}
                                 onContextMenu={(e) => e.preventDefault()}
+                                style={{ touchAction: "manipulation" }}
                             >
                                 <div className="sticker-bg" style={bandeiraUrl ? { backgroundImage: `url(${bandeiraUrl})` } : {}} />
                                 <div className="sticker-num">{String(fig.numero).padStart(2, "0")}</div>
