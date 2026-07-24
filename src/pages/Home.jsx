@@ -94,7 +94,9 @@ export function Home({ tab, setTab }) {
                 <div className="group-list">
                     {especiais.map((e) => {
                         const p = progressoGrupos[e.grupo] || { feito: 0, total: 0 };
+                        const percentualEspeciais = p.total > 0 ? Math.round((p.feito / p.total) * 100) : 0;
                         const bandeiraUrl = getImagemEspecial(e.grupo);
+
                         return (
                             <Link to={`/grupo/${e.grupo}`} key={e.grupo} className="group-row">
                                 <div className="group-left">
@@ -104,9 +106,11 @@ export function Home({ tab, setTab }) {
                                     >
                                         {!bandeiraUrl && e.grupo}
                                     </div>
-                                    <div>
+                                    <div className="group-info">
                                         <div className="group-name">{e.grupo} - {e.grupo === "FWC" ? "Copa do Mundo" : "Coca-Cola"}</div>
-                                        <div className="group-sub">{p.total} figurinhas</div>
+                                        <div className="mini-bar-track">
+                                            <div className="mini-bar-fill" style={{ width: `${percentualEspeciais}%` }}></div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="group-right">
