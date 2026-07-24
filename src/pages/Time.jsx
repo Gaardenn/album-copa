@@ -43,12 +43,14 @@ export function Time({ tab, setTab }) {
         if (navigator.vibrate) navigator.vibrate(15);
     }, []);
 
-    const iniciarPress = useCallback((fig) => {
+    const iniciarPress = useCallback((fig, e) => {
+        e.preventDefault();
         pressStart.current = Date.now();
         setPressionado(fig.id);
     }, []);
 
-    const finalizarPress = useCallback((fig) => {
+    const finalizarPress = useCallback((fig, e) => {
+        e.preventDefault();
         setPressionado(null);
         if (pressStart.current === null) return;
         const duracao = Date.now() - pressStart.current;
@@ -84,11 +86,11 @@ export function Time({ tab, setTab }) {
                             <div
                                 key={fig.id}
                                 className={`sticker ${fig.status} ${pressionado === fig.id ? "pressing" : ""}`}
-                                onMouseDown={() => iniciarPress(fig)}
-                                onMouseUp={() => finalizarPress(fig)}
+                                onMouseDown={(e) => iniciarPress(fig, e)}
+                                onMouseUp={(e) => finalizarPress(fig, e)}
                                 onMouseLeave={cancelarPress}
-                                onTouchStart={() => iniciarPress(fig)}
-                                onTouchEnd={() => finalizarPress(fig)}
+                                onTouchStart={(e) => iniciarPress(fig, e)}
+                                onTouchEnd={(e) => finalizarPress(fig, e)}
                                 onContextMenu={(e) => e.preventDefault()}
                             >
                                 <div className="sticker-bg" style={bandeiraUrl ? { backgroundImage: `url(${bandeiraUrl})` } : {}} />
