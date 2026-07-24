@@ -17,8 +17,8 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home tab={tab} setTab={setTab} />} />
-        <Route path="/grupo/:sigla" element={<Grupo tab={tab} setTab={setTab} />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/grupo/:sigla" element={<Grupo />} />
         <Route path="/time/:sigla" element={<Time tab={tab} setTab={setTab} />} />
         <Route path="/repetidas" element={<Repetidas tab={tab} setTab={setTab} />} />
         <Route path="/ajustes" element={<Ajustes />} />

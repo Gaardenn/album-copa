@@ -8,7 +8,7 @@ import { getResumoPorGrupo } from "../services/db";
 import { Nav } from "../components/Nav";
 import { getBandeiraUrl } from "../services/bandeiras";
 
-export function Grupo({ tab, setTab }) {
+export function Grupo() {
     const { sigla } = useParams();
     const [progressoTimes, setProgressoTimes] = useState({});
 
@@ -35,16 +35,37 @@ export function Grupo({ tab, setTab }) {
         return <Navigate to="/" replace />;
     }
 
+    const totalGrupo = Object.values(progressoTimes).reduce(
+        (acc, p) => ({ feito: acc.feito + p.feito, total: acc.total + p.total }),
+        { feito: 0, total: 0 }
+    );
+
+    const percentualGrupo = totalGrupo.total > 0 ? Math.round((totalGrupo.feito / totalGrupo.total) * 100) : 0;
+
     return (
         <div className="view">
             <Link to="/" className="back-row">
                 <FontAwesomeIcon icon={faAngleLeft} style={{ width: "1.25rem", height: "1.25rem", color: "#f2f0ea"}}/>
                 <span className="back-title">Grupo {sigla}</span>
             </Link>
+
+            <div className="scoreboard">
+                <div className="sb-title">Progresso do grupo</div>
+                <div className="sb-count">
+                    <span className="sb-num">{totalGrupo.feito}</span>
+                    <span className="sb-total">/ <span>{totalGrupo.total}</span></span>
+                </div>
+                <div className="sb-bar-track">
+                    <div className="sb-bar-fill" style={{ width: `${percentualGrupo}%` }}></div>
+                </div>
+            </div>
+
             <div className="group-list" style={{ marginTop: "0.625rem" }}>
                 {grupoInfo.times.map((time) => {
                     const p = progressoTimes[time] || { feito: 0, total: 0 };
+                    const percentual = p.total > 0 ? Math.round((p.feito / p.total) * 100) : 0;
                     const bandeiraUrl = getBandeiraUrl(time);
+
                     return (
                         <Link to={`/time/${time}`} key={time} className="group-row">
                             <div className="group-left">
@@ -54,9 +75,11 @@ export function Grupo({ tab, setTab }) {
                                 >
                                     {!bandeiraUrl && time}
                                 </div>
-                                <div>
+                                <div className="group-info">
                                     <div className="group-name">{time}</div>
-                                    <div className="group-sub">{p.total} figurinhas</div>
+                                    <div className="mini-bar-track">
+                                        <div className="mini-bar-fill" style={{ width: `${percentual}%` }}></div>
+                                    </div>
                                 </div>
                             </div>
                             <div className="group-right">
@@ -68,7 +91,7 @@ export function Grupo({ tab, setTab }) {
                 })}
             </div>
 
-            <Nav tab={tab} setTab={setTab} />
+            <Nav />
         </div>
     );
 }
