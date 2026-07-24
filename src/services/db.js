@@ -47,3 +47,34 @@ export async function figurinhaExiste(id) {
     return fig;
 }
 
+export async function exportarBackup() {
+    const todas = await db.figurinhas.toArray();
+    const backup = {
+        versao: 1,
+        dataExportacao: new Date().toISOString(),
+        figurinhas: todas
+    };
+
+    const json = JSON.stringify(backup, null, 2);
+    const blob = new Blob([json], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `album-copa-backup-${Date.now()}.json`;
+    link.click();
+
+    URL.revokeObjectURL(url);
+}
+
+export async function importarBackup(arquivo) {
+    const texto = await arquivo.text();
+    const backup = JSON.parse(texto);
+
+    if (!backup.figurinhas || !Array.isArray(backup.figurinhas)) {
+        throw new Error("Arquivo de backup inválido");
+    }
+
+    await db.figurinhas.clear();
+    await db.figurinhas.bulkAdd(backup.figurinhas);
+}

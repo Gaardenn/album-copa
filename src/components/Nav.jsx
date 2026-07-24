@@ -1,19 +1,23 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../styles/Nav.css";
-import { faBook, faRepeat } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router";
+import { faBook, faGear, faRepeat } from "@fortawesome/free-solid-svg-icons";
+import { NavLink } from "react-router";
 
-export function Nav({ tab, setTab }) {
+export function Nav() {
     return(
         <div className="tabbar">
-            <Link to="/" className={`tab ${tab === 0 ? "active" : ""}`} onClick={() => setTab(0)}>
-                <div className="icon"><FontAwesomeIcon icon={faBook} /></div>
+            <NavLink to="/" end className={({isActive}) => `tab ${isActive ? "active" : ""}`}>
+                <FontAwesomeIcon icon={faBook} className="icon" />
                 <div>Álbum</div>
-            </Link>
-            <Link to="/repetidas" className={`tab ${tab === 1 ? "active" : ""}`} style={{ position: "relative" }} onClick={() => setTab(1)}>
-                <div className="icon"><FontAwesomeIcon icon={faRepeat} /></div>
+            </NavLink>
+            <NavLink to="/repetidas" className={({isActive}) => `tab ${isActive ? "active" : ""}`}>
+                <FontAwesomeIcon icon={faRepeat} className="icon" />
                 <div>Repetidas</div>
-            </Link>
+            </NavLink>
+            <NavLink to="/ajustes" className={({isActive}) => `tab ${isActive ? "active" : ""}`}>
+                <FontAwesomeIcon icon={faGear} className="icon" />
+                <div>Ajustes</div>
+            </NavLink>
         </div>
     )
 }
