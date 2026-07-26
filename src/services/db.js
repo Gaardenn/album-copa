@@ -78,3 +78,7 @@ export async function importarBackup(arquivo) {
     await db.figurinhas.clear();
     await db.figurinhas.bulkAdd(backup.figurinhas);
 }
+
+export async function getTodasFigurinhas() {
+    return await db.figurinhas.toArray();
+}

@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../styles/Nav.css";
-import { faBook, faGear, faRepeat } from "@fortawesome/free-solid-svg-icons";
+import { faBook, faChartSimple, faGear, faRepeat } from "@fortawesome/free-solid-svg-icons";
 import { NavLink } from "react-router";
 
 export function Nav() {
@@ -17,6 +17,10 @@ export function Nav() {
             <NavLink to="/ajustes" className={({isActive}) => `tab ${isActive ? "active" : ""}`}>
                 <FontAwesomeIcon icon={faGear} className="icon" />
                 <div>Ajustes</div>
+            </NavLink>
+            <NavLink to="/estatisticas" className={({ isActive }) => `tab ${isActive ? "active" : ""}`}>
+                <FontAwesomeIcon icon={faChartSimple} className="icon" />
+                <div>Estatísticas</div>
             </NavLink>
         </div>
     )

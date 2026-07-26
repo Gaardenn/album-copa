@@ -6,12 +6,17 @@ import { Grupo } from './pages/Grupo';
 import { Time } from './pages/Time';
 import { Repetidas } from './pages/Repetidas';
 import { Ajustes } from './pages/Ajustes';
+import { Estatisticas } from './pages/Estatisticas';
 
 function App() {
   const [tab, setTab] = useState(0);
 
   useEffect(() => {
-    inicializarBanco();
+    async function carregar() {
+      await inicializarBanco();
+    }
+
+    carregar();
   }, []);
 
   return (
@@ -22,6 +27,7 @@ function App() {
         <Route path="/time/:sigla" element={<Time tab={tab} setTab={setTab} />} />
         <Route path="/repetidas" element={<Repetidas tab={tab} setTab={setTab} />} />
         <Route path="/ajustes" element={<Ajustes />} />
+        <Route path="/estatisticas" element={<Estatisticas />} />
       </Routes>
     </>
   );
