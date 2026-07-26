@@ -146,3 +146,52 @@
     position: relative;
     z-index: 2;
 }
+
+.filter-chips {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0 1rem 0.875rem 1rem;
+    overflow-x: auto;
+}
+
+.chip {
+    flex-shrink: 0;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    color: var(--text-dim);
+    font-size: 0.78125rem;
+    font-weight: 600;
+    padding: 0.4375rem 0.8125rem;
+    border-radius: 1.25rem;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.chip.active {
+    background: var(--gold);
+    color: #1a1305;
+    border-color: var(--gold);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 3.75rem 1.875rem;
+    color: var(--text-faint);
+}
+
+.empty-state .e-icon {
+    font-size: 2.125rem;
+    margin-bottom: 0.675rem;
+}
+
+.empty-state .e-title {
+    color: var(--text-dim);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    margin-bottom: 0.375rem;
+}
+
+.empty-state .e-sub {
+    font-size: 0.78125rem;
+    line-height: 1.5;
+}
