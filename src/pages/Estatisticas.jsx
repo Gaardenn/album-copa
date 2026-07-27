@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { grupos } from "../services/estrutura";
 import { getTodasFigurinhas } from "../services/db";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGifts, faMedal } from "@fortawesome/free-solid-svg-icons";
+import { faClipboard, faGifts, faMedal } from "@fortawesome/free-solid-svg-icons";
 import { getBandeiraUrl, getImagemEspecial } from "../services/bandeiras";
 import { Nav } from "../components/Nav";
 import "../styles/Estatisticas.css";
+import { Link } from "react-router";
 
 export function Estatisticas() {
     const [porTime, setPorTime] = useState([]);
@@ -113,6 +114,10 @@ export function Estatisticas() {
                     </div>
                 )}
             </div>
+
+            <Link to="/lista-compras" className="group-row" style={{ marginTop: "1.5rem" }} >
+                <div className="group-name"><FontAwesomeIcon icon={faClipboard} />Ver lista de compras</div>
+            </Link>
 
             <Nav />
         </div>

@@ -82,3 +82,7 @@ export async function importarBackup(arquivo) {
 export async function getTodasFigurinhas() {
     return await db.figurinhas.toArray();
 }
+
+export async function getFigurinhasFaltando() {
+    return await db.figurinhas.where("status").equals("nao_tenho").sortBy("id");
+}

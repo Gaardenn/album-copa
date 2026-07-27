@@ -7,6 +7,7 @@ import { Time } from './pages/Time';
 import { Repetidas } from './pages/Repetidas';
 import { Ajustes } from './pages/Ajustes';
 import { Estatisticas } from './pages/Estatisticas';
+import { ListaCompras } from './pages/ListaCompras';
 
 function App() {
   const [tab, setTab] = useState(0);
@@ -28,6 +29,7 @@ function App() {
         <Route path="/repetidas" element={<Repetidas tab={tab} setTab={setTab} />} />
         <Route path="/ajustes" element={<Ajustes />} />
         <Route path="/estatisticas" element={<Estatisticas />} />
+        <Route path="/lista-compras" element={<ListaCompras />} />
       </Routes>
     </>
   );
