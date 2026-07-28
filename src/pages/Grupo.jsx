@@ -1,10 +1,10 @@
 import { Link, Navigate, useParams } from "react-router";
 import "../styles/Grupo.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import { faAngleLeft, faAngleRight, faCircleCheck } from "@fortawesome/free-solid-svg-icons";
 import { especiais, grupos } from "../services/estrutura";
 import { useEffect, useState } from "react";
-import { getResumoPorGrupo } from "../services/db";
+import { getResumoPorGrupo, marcarGrupoCompleto } from "../services/db";
 import { Nav } from "../components/Nav";
 import { getBandeiraUrl } from "../services/bandeiras";
 
@@ -42,12 +42,35 @@ export function Grupo() {
 
     const percentualGrupo = totalGrupo.total > 0 ? Math.round((totalGrupo.feito / totalGrupo.total) * 100) : 0;
 
+    async function handleCompletarGrupo(e) {
+        e.stopPropagation();
+        e.preventDefault();
+
+        const confirmar = window.confirm(
+            `Marcar todas as figurinhas do Grupo ${sigla} (${grupoInfo.times.join(', ')}) como "tenho"? Isso não pode ser desfeito automaticamente.`
+        );
+        if (!confirmar) return;
+
+        await marcarGrupoCompleto(grupoInfo.times);
+
+        const resultado = {};
+        for (const time of grupoInfo.times) {
+            resultado[time] = await getResumoPorGrupo(time);
+        }
+        setProgressoTimes(resultado);
+    }
+
     return (
         <div className="view">
-            <Link to="/" className="back-row">
-                <FontAwesomeIcon icon={faAngleLeft} style={{ width: "1.25rem", height: "1.25rem", color: "#f2f0ea"}}/>
-                <span className="back-title">Grupo {sigla}</span>
-            </Link>
+            <div className="back-row">
+                <Link to="/" style={{ textDecoration: "none", color: "#f2f0ea" }}>
+                    <FontAwesomeIcon icon={faAngleLeft} style={{ width: "1.25rem", height: "1.25rem", color: "#f2f0ea" }} />
+                    <span className="back-title">Grupo {sigla}</span>
+                </Link>
+                <button className="completar-btn" onClick={handleCompletarGrupo}>
+                    <FontAwesomeIcon icon={faCircleCheck} /> Completar
+                </button>
+            </div>
 
             <div className="scoreboard">
                 <div className="sb-title">Progresso do grupo</div>

@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router";
-import { atualizarStatus, getFigurinhasPorGrupo } from "../services/db";
+import { atualizarStatus, getFigurinhasPorGrupo, marcarTimeCompleto } from "../services/db";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleLeft, faCheck, faHand, faHandPointer, faMagnifyingGlass, faRotate } from "@fortawesome/free-solid-svg-icons";
+import { faAngleLeft, faCheck, faCircleCheck, faHand, faHandPointer, faMagnifyingGlass, faRotate } from "@fortawesome/free-solid-svg-icons";
 import "../styles/Time.css";
 import { Nav } from "../components/Nav";
 import { getBandeiraUrl, getImagemEspecial } from "../services/bandeiras";
@@ -73,14 +73,30 @@ export function Time({ tab, setTab }) {
         ? figurinhas
         : figurinhas.filter((fig) => fig.status === filtro);
 
+    async function handleMarcarCompleto(e) {
+        e.stopPropagation();
+        e.preventDefault();
+
+        const confirmar = window.confirm(
+            `Marcar todas as ${figurinhas.length} figurinhas de ${sigla} como "tenho"? Isso não pode ser desfeito automaticamente.`
+        );
+        if (!confirmar) return;
+
+        await marcarTimeCompleto(sigla);
+        carregar();
+    }
+
     return (
         <>
             <div className="view">
-                <div>
-                    <Link className="back-row" to={-1}>
+                <div className="back-row">
+                    <Link to={-1} style={{ textDecoration: "none", color: "#f2f0ea"}}>
                         <FontAwesomeIcon icon={faAngleLeft} style={{ width: "1.25rem", height: "1.25rem", color: "#f2f0ea" }} />
                         <span className="back-title">{sigla}</span>
                     </Link>
+                    <button className="completar-btn" onClick={handleMarcarCompleto}>
+                        <FontAwesomeIcon icon={faCircleCheck} />Completar
+                    </button>
                 </div>
 
                 <div className="filter-chips">

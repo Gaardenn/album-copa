@@ -10,7 +10,7 @@
     padding: 0.875rem 1rem 0.25rem 1rem;
     color: var(--text);
     cursor: pointer;
-    text-decoration: none;
+    justify-content: space-between;
 }
 
 .back-row svg {
@@ -22,6 +22,20 @@
     font-weight: 800;
     font-size: 1.375rem;
     letter-spacing: 0.03125rem;
+}
+
+.completar-btn {
+    background: var(--surface-2);
+    border: 1px solid var(--line);
+    color: var(--green);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    padding: 0.4rem 0.75rem;
+    border-radius: 0.625rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
 }
 
 .grid-wrap {

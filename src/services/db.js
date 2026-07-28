@@ -86,3 +86,21 @@ export async function getTodasFigurinhas() {
 export async function getFigurinhasFaltando() {
     return await db.figurinhas.where("status").equals("nao_tenho").sortBy("id");
 }
+
+export async function marcarTimeCompleto(sigla) {
+    const figs = await db.figurinhas.where('grupo').equals(sigla).toArray();
+    await db.transaction('rw', db.figurinhas, async () => {
+        for (const fig of figs) {
+            await db.figurinhas.update(fig.id, { status: 'tenho' });
+        }
+    });
+}
+
+export async function marcarGrupoCompleto(siglasTimes) {
+    const todasFigs = await db.figurinhas.where('grupo').anyOf(siglasTimes).toArray();
+    await db.transaction('rw', db.figurinhas, async () => {
+        for (const fig of todasFigs) {
+            await db.figurinhas.update(fig.id, { status: 'tenho' });
+        }
+    });
+}
