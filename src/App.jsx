@@ -8,17 +8,29 @@ import { Repetidas } from './pages/Repetidas';
 import { Ajustes } from './pages/Ajustes';
 import { Estatisticas } from './pages/Estatisticas';
 import { ListaCompras } from './pages/ListaCompras';
+import "./App.css"
 
 function App() {
   const [tab, setTab] = useState(0);
+  const [carregado, setCarregado] = useState(false);
 
   useEffect(() => {
-    async function carregar() {
+    async function iniciar() {
       await inicializarBanco();
+      setCarregado(true);
     }
 
-    carregar();
+    iniciar();
   }, []);
+
+  if (!carregado) {
+    return (
+      <div className="splash">
+        <img src="icon-512.png" className="splash-logo" />
+        <div className="splash-title">Álbum da Copa</div>
+      </div>
+    );
+  }
 
   return (
     <>
