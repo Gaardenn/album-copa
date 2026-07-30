@@ -10,22 +10,43 @@ import { Estatisticas } from './pages/Estatisticas';
 import { ListaCompras } from './pages/ListaCompras';
 import "./App.css"
 
+const TEMPO_MINIMO_SPLASH = 1500;
+
 function App() {
   const [tab, setTab] = useState(0);
-  const [carregado, setCarregado] = useState(false);
+  const [bancoCarregado, setBancoCarregado] = useState(false);
+  const [tempoMinimoPassou, setTempoMinimoPassou] = useState(false);
+  const [mostrarSplash, setMostrarSplash] = useState(true);
 
   useEffect(() => {
     async function iniciar() {
       await inicializarBanco();
-      setCarregado(true);
+      setBancoCarregado(true);
     }
-
     iniciar();
+
+    const timer = setTimeout(() => {
+      setTempoMinimoPassou(true);
+    }, TEMPO_MINIMO_SPLASH);
+
+    return () => clearTimeout(timer);
   }, []);
 
-  if (!carregado) {
+  const prontoParaSair = bancoCarregado && tempoMinimoPassou;
+
+  useEffect(() => {
+    if (!prontoParaSair) return;
+
+    const timer = setTimeout(() => {
+      setMostrarSplash(false);
+    }, 400);
+
+    return () => clearTimeout(timer);
+  }, [prontoParaSair]);
+
+  if (mostrarSplash) {
     return (
-      <div className="splash">
+      <div className={`splash ${prontoParaSair ? "splash-saindo" : ""}`}>
         <img src="icon-512.png" className="splash-logo" />
         <div className="splash-title">Álbum da Copa</div>
       </div>
